@@ -1,38 +1,45 @@
 import Search from "./Search";
 import RestaurantCard from "./RestaurantCard";
+import { restaurants } from "../utilities/mockData";
+import { useState, useEffect } from "react";
+import TopRatedRestaurants from "./TopRatedRestaurants";
 
 // props
 
-const restaurants = [
-  {
-    id: 1,
-    name: "PizzaHut",
-    imageUrl:
-      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/2b4f62d606d1b2bfba9ba9e5386fabb7",
-    avgRating: "4.2",
-    deliveryTime: "30-35mins",
-    cuisines: "Pizza",
-    location: "rajnagar",
-  },
-  {
-    id: 2,
-    name: "Mc.Donald's",
-    imageUrl:
-      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/535fc9f9c135f7982317bbb6a64a1ffc",
-    avgRating: "4.5",
-    deliveryTime: "25-30mins",
-    cuisines: "Burger",
-    location: "rajnagar",
-  },
-];
-
 function Body() {
+
+  console.log("Body component");
+
+  const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants); 
+
+  function searchRestaurants(searchText) {
+    // eslint-disable-next-line react/prop-types
+    const filterRestaurants = restaurants.filter(res => res.name.toUpperCase().includes(searchText.toUpperCase()));
+    setFilteredRestaurants(filterRestaurants);
+    console.log(restaurants);
+  }
+
+  function filterTopRatedRestaurants() {
+    const toprated = restaurants.filter(res => res.avgRating >= 4.5);
+    setFilteredRestaurants(toprated);
+    console.log(toprated);
+}
+
+  useEffect(() => {
+    console.log("use effect");
+  }, [])
+
   return (
     <>
+    { console.log("rendered")}
       <h1>Restaurants in your area</h1>
-      <Search />
+      <div className="filterBar">
+        <Search searchRestaurants = {searchRestaurants} />
+        <TopRatedRestaurants topRatedRestaurants = {filterTopRatedRestaurants}/>
+      </div>
+     
       <div className="restaurant-container">
-        {restaurants.map((res) => (
+        {filteredRestaurants.map((res) => (
           <RestaurantCard key={res.id} restaurant={res} />
         ))}
       </div>
