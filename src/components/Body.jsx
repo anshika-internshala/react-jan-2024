@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { restaurants } from "../utilities/mockData";
 import { useState, useEffect } from "react";
 import TopRatedRestaurants from "./TopRatedRestaurants";
+import { Link } from "react-router-dom";
 
 // props
 
@@ -40,7 +41,9 @@ function Body() {
      
       <div className="restaurant-container">
         {filteredRestaurants.map((res) => (
-          <RestaurantCard key={res.id} restaurant={res} />
+          <Link key={res.id} to={`/restaurant/${res.id}`}>
+            <RestaurantCard key={res.id} restaurant={res} />
+          </Link> 
         ))}
       </div>
     </>
