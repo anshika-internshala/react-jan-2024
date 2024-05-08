@@ -8,6 +8,7 @@ import Body from './components/Body.jsx'
 import Error from './components/Error.jsx'
 import Cart from './components/Cart.jsx'
 import RestaurantDetails from './components/RestaurantDetails.jsx'
+import About from './components/About.jsx'
 
 const appRouter = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurant/:id",
                 element: <RestaurantDetails/>
+            },
+            {
+                path: "/about",
+                element: <About/>
             }
             
         ]
