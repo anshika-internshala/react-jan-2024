@@ -2,11 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import { routes } from "./Routes/restaurants.routes.js";
 import { userRoutes } from "./Routes/user.routes.js";
+import cors from "cors";
 
 const app = express();
 
 // Built in middleware
 app.use(express.json());
+
+app.use(cors());
 
 app.listen("5100", () => {
     console.log("server is running on port 5100");

@@ -6,12 +6,12 @@ function RestaurantCard(props) {
     const { name, avgRating, deliveryTime, cuisines, location, imageUrl } = props.restaurant;
     return ( 
             <div className="restaurant-card">
-                <img src={imageUrl} alt="" width="100%" height="200px" />
+                <img src={imageUrl} alt="" width="200px" height="150px" />
                 <h2>{name}</h2>
-                <h2>{avgRating}</h2>
-                <h2>{deliveryTime}</h2>
-                <h2>{cuisines}</h2>
-                <h2>{location}</h2>
+                <span>{avgRating}</span>
+                <span>{deliveryTime}</span>
+                <span>{cuisines}</span>
+                <span>{location}</span>
             </div>
     )
 }

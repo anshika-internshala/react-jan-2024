@@ -1,5 +1,6 @@
 import userModel from  "../model/users.model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export function register(req, res) {
     const { fullName, email , password} = req.body;
@@ -36,12 +37,15 @@ export function login(req, res) {
             res.status(403).send({message: "Invalid Password"});
         }
 
+        let token = jwt.sign({id: data._id}, "secretKey", {expiresIn: "1h"});
+
         res.send( {
             user: {
                 id: data._id,
                 email: data.email,
                 fullName: data.fullName
-           }
+           },
+           accessToken: token
         })
     }).catch(err => {
         res.status(500).send({message: err.message})
