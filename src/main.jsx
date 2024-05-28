@@ -9,6 +9,7 @@ import Error from './components/Error.jsx'
 import Cart from './components/Cart.jsx'
 import RestaurantDetails from './components/RestaurantDetails.jsx'
 import About from './components/About.jsx'
+import Memo from './components/Memo.jsx'
 
 const appRouter = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/about",
                 element: <About/>
+            },
+            {
+                path: "/memo",
+                element: <Memo/>
             }
             
         ]

@@ -6,13 +6,19 @@ import {
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utilities/useOnlineStatus";
 import Login from "./Login";
-import { useState } from "react";
+import { useState , useContext} from "react";
+import { useSelector } from "react-redux";
+import userContext from "../utilities/userContext";
 
 function Header() {
   const [visible, setVisible] = useState(false);
   const [isLogin, setIsLoggedIn] = useState(false);
 
   const onlineStatus = useOnlineStatus();
+
+  const { currentUser } = useContext(userContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   const openModal = () => {
     setVisible(true);
@@ -37,6 +43,9 @@ function Header() {
           height="100px"
         />
         <ul>
+          <li>
+            <span>{currentUser}</span>
+          </li>
           <li>
             <span>Online Status: {onlineStatus ? "🟢" : "🔴"}</span>
           </li>
@@ -70,7 +79,7 @@ function Header() {
           </li>
 
           <li>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart- {cartItems.length} items</Link>
           </li>
         </ul>
       </nav>

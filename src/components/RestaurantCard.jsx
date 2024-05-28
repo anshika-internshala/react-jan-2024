@@ -1,6 +1,11 @@
+import userContext from "../utilities/userContext";
+import { useContext } from "react";
+
 /* eslint-disable react/prop-types */
 function RestaurantCard(props) {
     console.log("props", props.restaurant);
+
+    const { currentUser } = useContext(userContext);
 
    // Object Destructuring
     const { name, avgRating, deliveryTime, cuisines, location, imageUrl } = props.restaurant;
@@ -12,6 +17,7 @@ function RestaurantCard(props) {
                 <span>{deliveryTime}</span>
                 <span>{cuisines}</span>
                 <span>{location}</span>
+                <span>{currentUser}</span>
             </div>
     )
 }
